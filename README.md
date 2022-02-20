@@ -1,4 +1,4 @@
-# LeetCode
+# DSA Practice Questions
 My daily DSA Practice Repository!!
 
 I love documenting my code. 
