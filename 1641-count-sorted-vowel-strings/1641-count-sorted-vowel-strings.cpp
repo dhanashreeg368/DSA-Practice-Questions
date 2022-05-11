@@ -4,7 +4,7 @@ public:
         int dp[n+1][6];
         for(int i=1;i<=n;i++)
         {
-            dp[i][0]=0;
+            dp[i][0]=0;   //initialising zeroth column
             for(int j=1;j<=5;j++)
             {
                     dp[i][j]=(i>1?dp[i-1][j]:1)+dp[i][j-1];                         
