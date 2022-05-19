@@ -1,25 +1,27 @@
 class Solution:
-    from functools import lru_cache
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        longest_by_pos={}
+        deltas=[(1,0),(-1,0),(0,1),(0,-1)]
+        ROWS,COLS = len(matrix),len(matrix[0])
         
-        self.height = len(matrix)
-        self.width = len(matrix[0])
-        self.grid = matrix
-        
-        return max([self.dfs(x, y) for x in range(self.height) for y in range(self.width)])
-        
-        
-    
-    @lru_cache(maxsize = None)
-    def dfs(self, x, y, distance = 1):
-        
-        new_dist = distance
-        
-        for x_del, y_del in [(-1,0) , (0,1) , (1,0) , (0,-1)]:
-            x_new, y_new = x+x_del, y+y_del
+        def dfs(pos):
+            if pos in longest_by_pos:
+                return longest_by_pos[pos]
             
-            if 0 <= x_new < self.height and 0 <= y_new <self.width and self.grid[x_new][y_new] > self.grid[x][y]:
-
-                new_dist = max(new_dist, distance + self.dfs(x_new, y_new, distance))
-             
-        return new_dist
+            val=matrix[pos[0]][pos[1]]
+            longest=1
+            for delta_x,delta_y in deltas:
+                neighbor_x=delta_x+pos[0]
+                neighbor_y=delta_y+pos[1]
+                
+                if 0<=neighbor_x<ROWS and 0<=neighbor_y<COLS and matrix[neighbor_x][neighbor_y]>val:
+                    longest=max(longest,1+dfs((neighbor_x,neighbor_y)))
+            
+            longest_by_pos[pos]=longest
+            return longest
+        
+        max_path=1
+        for row in range(ROWS):
+            for col in range(COLS):
+                max_path=max(max_path,dfs((row,col)))
+        return max_path
