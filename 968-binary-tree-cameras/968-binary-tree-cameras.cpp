@@ -30,6 +30,6 @@ public:
     }
     int minCameraCover(TreeNode* root) {
         if (dfs(root) == NO_CAMERA) ans++;
-        return ans++;
+        return ans;
     }
 };
