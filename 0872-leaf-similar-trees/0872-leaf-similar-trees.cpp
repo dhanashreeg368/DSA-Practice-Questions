@@ -12,7 +12,7 @@
 class Solution {
 public:
     void traverse(TreeNode* root, string &s) {
-        if(root==NULL) 
+        if(root==NULL)
             return;
         if(root->left==NULL && root->right==NULL) {
             s+=(to_string(root->val))+"#";
@@ -21,6 +21,7 @@ public:
         traverse(root->left, s);
         traverse(root->right, s);
     }
+    
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
         string s1="";
         string s2="";
