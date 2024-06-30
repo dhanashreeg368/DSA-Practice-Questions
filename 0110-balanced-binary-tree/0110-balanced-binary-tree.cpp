@@ -13,6 +13,7 @@ class Solution {
 public:
     // balanced binary tree is a tree whose (height of left tree - height of right tree <=1)
     bool isBalanced(TreeNode* root) {
+        // return true if ans!=-1
         return calculateHeight(root) != -1;
     }
     
@@ -20,17 +21,17 @@ public:
         if (root==NULL) {
             return 0;
         }
-        int leftHeight = calculateHeight(root->left);
+        int leftHeight = calculateHeight(root->left); // calculate left height
         if (leftHeight == -1) {
             return -1;
         }
-        int rightHeight = calculateHeight(root->right);
+        int rightHeight = calculateHeight(root->right); // calculate right height
         if (rightHeight == -1) {
             return -1;
         }
-        if ((abs(leftHeight - rightHeight)) > 1) {
+        if ((abs(leftHeight - rightHeight)) > 1) { // if greater than 1 return -1
             return -1;
         }
-        return 1 + max(leftHeight, rightHeight);
+        return 1 + max(leftHeight, rightHeight); // return height
     }
 };
