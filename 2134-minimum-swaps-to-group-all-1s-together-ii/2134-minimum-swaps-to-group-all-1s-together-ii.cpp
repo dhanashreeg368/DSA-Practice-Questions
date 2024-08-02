@@ -8,14 +8,14 @@ public:
             return 0;
         }
         
-        int onesInWindow = 0; // caclulate 1s in first window
+        int onesInWindow = 0; // caclulate 1s in first window (0 --> totalOnes)
         for(int i = 0; i<totalOnes; i++) { 
             onesInWindow += nums[i];
         }
         int maxNoOfOnes = onesInWindow; // they will be max
         
         // consider array as n + totalOnes 
-        for (int i = totalOnes; i< n + totalOnes; i++) { 
+        for (int i = totalOnes; i< n + totalOnes; i++) {  // (totalOnes --> n + totalOnes)
             // when we go to next element, add next ele and subtract the first element from window
             onesInWindow += nums[i%n] - nums[(i - totalOnes) % n]; 
             maxNoOfOnes = max(maxNoOfOnes, onesInWindow);
