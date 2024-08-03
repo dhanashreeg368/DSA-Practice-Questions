@@ -9,7 +9,7 @@ public:
             if (nums[r] == 0) { // if zero encountered, incr count
                 zeroes++;
             }
-            while (zeroes > k) { // if not valid condtion, left++, and if 0 encountered, decr it from cnt
+            if (zeroes > k) { // if not valid condtion, left++, and if 0 encountered, decr it from cnt
                 if (nums[l] == 0) {
                     zeroes--;
                 }
