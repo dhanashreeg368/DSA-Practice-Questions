@@ -10,7 +10,7 @@ public:
             
             // if the char has already a count, that means, already present in that case, 
             // we need to shrink left window till the count is greater than 0
-            while(hash[s[right]] > 0) {
+            if (hash[s[right]] > 0) {
                 hash[s[left]]--;
                 left+=1;
             }
