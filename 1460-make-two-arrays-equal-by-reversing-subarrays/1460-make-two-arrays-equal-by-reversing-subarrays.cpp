@@ -1,12 +1,18 @@
 class Solution {
 public:
     bool canBeEqual(vector<int>& target, vector<int>& arr) {
-        sort(target.begin(), target.end());
-        sort(arr.begin(), arr.end());
-        
-        if (target == arr) {
-            return true;
+        unordered_map<int, int> mp; // map to store the num and freq of target
+        for(int num: target) { // keep a target map for freq
+            mp[num]++;
         }
-        return false;
+        
+        for(int num: arr) { 
+            if(mp.find(num) == mp.end() || mp[num] == 0) { // check if arr[i] is not in the map 
+                return false; // if not in the map return false;
+            } else {
+                mp[num]--; // if already present in the map, decr the count of it 
+            }
+        }
+        return true;
     }
 };
